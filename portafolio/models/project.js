@@ -5,7 +5,7 @@ var schema = mongoose.Schema;
 
 var projectSchema = schema({ //no importa si usas con mayuscula o minuscula al comienzo
     name:String,
-    descripcion:String,
+    description:String,
     category:String,
     langs:String,
     year:Number,

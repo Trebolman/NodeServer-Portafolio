@@ -19,7 +19,8 @@ var controller = {
         // creo un objeto que reciba parametros de POSTMAN
         var params = req.body;
         objProject.name = params.name;
-        objProject.descripcion = params.descripcion;
+        objProject.description = params.description;
+        // objProject.cate
         objProject.category = params.category;
         objProject.langs = params.langs;
         objProject.year = params.year;

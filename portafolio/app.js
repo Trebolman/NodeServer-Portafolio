@@ -10,6 +10,9 @@ var app = express();
 
 // **** cargaremos archivos independientes de rutas
 
+// cargado archivo de rutas
+var rutas_de_project = require('./routes/project');
+
 // **** middlewares
 // todo lo que nos llegue lo convertirá en json (url, contenido, request)
 // Es un script que se encuentra en el medio para validar entradas
@@ -18,23 +21,21 @@ app.use(bodyParser.json());
 
 // **** cors
 // configuraremos para que no haya mas restricciones del cors
-app.use((req, res, next)=>{
-    res.header('Access-Control-Allow-Origin','*');
-    res.header('Access-Control-Allow-Headers    ','Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type,Accept, Access-Control-Allow-Request-Method');
-    res.header('Access-Control-Allow-Methods','GET','POST','OPTIONS','PUT','DELETE');
-    res.header('Allow','GET','POST','OPTIONS','PUT','DELETE');
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
 
-// cargado archivo de rutas
-var rutas_de_project = require('./routes/project');
 
 // **** rutas de prueba (creadas de forma artesanal en realidad no deberían ir aquí)
 // req: request que nos hace la pragina solicitante de la api
 // res: respuesta o response que devolvems a la pagina solicitante
-app.get('/',(req,res)=>{ // ruta por defecto
-    res.status(200).send("<h1>Pagina de inicio de Node</h1>") // if status = 200, entonces la respuesta se ha dado
-}); 
+// app.get('/',(req,res)=>{ // ruta por defecto
+//     res.status(200).send("<h1>Pagina de inicio de Node</h1>") // if status = 200, entonces la respuesta se ha dado
+// }); 
 
 //ruta con el verbo post
 // app.post('/',(req,res)=>{ // ruta por defecto
