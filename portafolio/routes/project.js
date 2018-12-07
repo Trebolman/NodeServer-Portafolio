@@ -10,9 +10,10 @@ var multipartMiddleware = multipart({uploadDir: './images'}); //Estamos configur
 router.get('/home',ProjectController.home);
 router.post('/createProject',ProjectController.createProject);
 router.get('/project/:id',ProjectController.getProjectById);
-router.get('/getProjectAll',ProjectController.getProjectAll);
+router.get('/projects',ProjectController.getProjectAll);
 router.put('/updateProjectById/:id',ProjectController.updateProjectById);
 router.delete('/deleteProyectById/:id',ProjectController.deleteProyectById);
 router.post('/uploadImageById/:id',multipartMiddleware,ProjectController.uploadImageById); //usamos un middlewar que hace de observador, validador
+router.get('/get-image/:namefile',ProjectController.getImageByName);
 
 module.exports = router;

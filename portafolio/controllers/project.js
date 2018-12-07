@@ -4,6 +4,9 @@ var Project = require("../models/project");
 // agregamos la libreria para copiar, pegar archivos
 var fs = require('fs');
 
+// sirve para solucion de rutas
+var path_module = require('path');
+
 // crearemos con su controlador
 var controller = {
     home: function(req,res){
@@ -109,7 +112,7 @@ var controller = {
             if(!objProjectDeleted){
                 return res.status(404).send({Error:"No existe el proyectoa a eliminar"});
             }
-            return res.status(200).send({Eliminado: objProjectDeleted});
+            return res.status(200).send({eliminado: objProjectDeleted});
         });
     },
 
@@ -145,6 +148,19 @@ var controller = {
         else{
             return res.status(200).send({message:"Archivo no seleccionado"});
         }
+    },
+
+    getImageByName: function(req,res){
+        var nombre_archivo = req.params.namefile; // en el que file hace de id
+        var path = './images/'+nombre_archivo;
+        fs.exists(path,(exist)=>{
+            if(exist){
+                return res.sendFile(path_module.resolve(path)); //SendFile es una funcion propia
+            }
+            else{
+                return res.status(200).send({Error:"La imagen no existe"});
+            }
+        });
     }
 };
 
